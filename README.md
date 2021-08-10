@@ -1,14 +1,16 @@
 # Burger Queen - API con Node.js
 
+https://github.com/FaztWeb/company-products-api/blob/master/src/controllers/auth.controller.js
+
 ## Índice
 
-* [1. Preámbulo](#1-pre%C3%A1mbulo)
-* [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Consideraciones generales](#4-consideraciones-generales)
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptaci%C3%B3n-m%C3%ADnimos-del-proyecto)
-* [6. Pistas, tips y lecturas complementarias](#6-pistas-tips-y-lecturas-complementarias)
-* [7 HTTP API Checklist](#7-http-api-checklist)
+- [1. Preámbulo](#1-pre%C3%A1mbulo)
+- [2. Resumen del proyecto](#2-resumen-del-proyecto)
+- [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
+- [4. Consideraciones generales](#4-consideraciones-generales)
+- [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptaci%C3%B3n-m%C3%ADnimos-del-proyecto)
+- [6. Pistas, tips y lecturas complementarias](#6-pistas-tips-y-lecturas-complementarias)
+- [7 HTTP API Checklist](#7-http-api-checklist)
 
 ## 1. Preámbulo
 
@@ -75,64 +77,64 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 - [ ] **Instalar y usar módulos con npm**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Sitio oficial de npm (en inglés)](https://www.npmjs.com/)
-</p></details>
+  - [Sitio oficial de npm (en inglés)](https://www.npmjs.com/)
+  </p></details>
 
 - [ ] **Configuración de package.json**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [package.json - Documentación oficial (en inglés)](https://docs.npmjs.com/files/package.json)
-</p></details>
+  - [package.json - Documentación oficial (en inglés)](https://docs.npmjs.com/files/package.json)
+  </p></details>
 
 - [ ] **Configuración de npm-scripts**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [scripts - Documentación oficial (en inglés)](https://docs.npmjs.com/misc/scripts)
-</p></details>
+  - [scripts - Documentación oficial (en inglés)](https://docs.npmjs.com/misc/scripts)
+  </p></details>
 
 ### JavaScript
 
 - [ ] **Pruebas unitarias (unit tests)**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Empezando con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/getting-started)
-</p></details>
+  - [Empezando con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/getting-started)
+  </p></details>
 
 - [ ] **Pruebas asíncronas**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Tests de código asincrónico con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/asynchronous)
-</p></details>
+  - [Tests de código asincrónico con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/asynchronous)
+  </p></details>
 
 - [ ] **Uso de mocks y espías**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Manual Mocks con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/manual-mocks)
-</p></details>
+  - [Manual Mocks con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/manual-mocks)
+  </p></details>
 
 - [ ] **Pruebas de integración (end-to-end)**
 
 - [ ] **Módulos de ECMAScript (ES Modules)**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [import - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/import)
-  * [export - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/export)
-</p></details>
+  - [import - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/import)
+  - [export - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/export)
+  </p></details>
 
 - [ ] **Módulos de CommonJS**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Modules: CommonJS modules - Node.js Docs](https://nodejs.org/docs/latest/api/modules.html)
-</p></details>
+  - [Modules: CommonJS modules - Node.js Docs](https://nodejs.org/docs/latest/api/modules.html)
+  </p></details>
 
 - [ ] **Uso de linter (ESLINT)**
 
@@ -150,10 +152,10 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 - [ ] **GitHub: Despliegue con GitHub Pages**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Sitio oficial de GitHub Pages](https://pages.github.com/)
-</p></details>
+  - [Sitio oficial de GitHub Pages](https://pages.github.com/)
+  </p></details>
 
 - [ ] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
 
@@ -169,54 +171,54 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 - [ ] **Consulta o petición (request) y respuesta (response).**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Generalidades del protocolo HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Overview)
-  * [Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Messages)
-</p></details>
+  - [Generalidades del protocolo HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Overview)
+  - [Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Messages)
+  </p></details>
 
 - [ ] **Cabeceras (headers)**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [HTTP headers - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Headers)
-</p></details>
+  - [HTTP headers - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Headers)
+  </p></details>
 
 - [ ] **Cuerpo (body)**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Cuerpo de Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Messages#cuerpo)
-</p></details>
+  - [Cuerpo de Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Messages#cuerpo)
+  </p></details>
 
 - [ ] **Verbos HTTP**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Métodos de petición HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Methods)
-</p></details>
+  - [Métodos de petición HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Methods)
+  </p></details>
 
 - [ ] **Codigos de status de HTTP**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Códigos de estado de respuesta HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Status)
-  * [The Complete Guide to Status Codes for Meaningful ReST APIs - dev.to](https://dev.to/khaosdoctor/the-complete-guide-to-status-codes-for-meaningful-rest-apis-1-5c5)
-</p></details>
+  - [Códigos de estado de respuesta HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Status)
+  - [The Complete Guide to Status Codes for Meaningful ReST APIs - dev.to](https://dev.to/khaosdoctor/the-complete-guide-to-status-codes-for-meaningful-rest-apis-1-5c5)
+  </p></details>
 
 - [ ] **Encodings y JSON**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Introducción a JSON - Documentación oficial](https://www.json.org/json-es.html)
-</p></details>
+  - [Introducción a JSON - Documentación oficial](https://www.json.org/json-es.html)
+  </p></details>
 
 - [ ] **CORS (Cross-Origin Resource Sharing)**
 
-  <details><summary>Links</summary><p>
+    <details><summary>Links</summary><p>
 
-  * [Control de acceso HTTP (CORS) - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/CORS)
-</p></details>
+  - [Control de acceso HTTP (CORS) - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/CORS)
+  </p></details>
 
 ### Autenticación
 
@@ -290,35 +292,35 @@ entregada por nuestra clienta, la API debe exponer los siguientes endpoints:
 
 #### 5.1.1 `/`
 
-* `GET /`
+- `GET /`
 
 #### 5.1.2 `/auth`
 
-* `POST /auth`
+- `POST /auth`
 
 #### 5.1.3 `/users`
 
-* `GET /users`
-* `GET /users/:uid`
-* `POST /users`
-* `PUT /users/:uid`
-* `DELETE /users/:uid`
+- `GET /users`
+- `GET /users/:uid`
+- `POST /users`
+- `PUT /users/:uid`
+- `DELETE /users/:uid`
 
 #### 5.1.4 `/products`
 
-* `GET /products`
-* `GET /products/:productid`
-* `POST /products`
-* `PUT /products/:productid`
-* `DELETE /products/:productid`
+- `GET /products`
+- `GET /products/:productid`
+- `POST /products`
+- `PUT /products/:productid`
+- `DELETE /products/:productid`
 
 #### 5.1.5 `/orders`
 
-* `GET /orders`
-* `GET /orders/:orderId`
-* `POST /orders`
-* `PUT /orders/:orderId`
-* `DELETE /orders/:orderId`
+- `GET /orders`
+- `GET /orders/:orderId`
+- `POST /orders`
+- `PUT /orders/:orderId`
+- `DELETE /orders/:orderId`
 
 ### 5.2 CLI
 
@@ -346,24 +348,24 @@ npm start 8888
 
 Nuestra aplicación usa las siguientes variables de entorno:
 
-* `PORT`: Si no se ha especificado un puerto como argumento de lína de comando,
+- `PORT`: Si no se ha especificado un puerto como argumento de lína de comando,
   podemos usar la variable de entorno `PORT` para especificar el puerto. Valor
   por defecto `8080`.
-* `DB_URL`: El _string_ de conexión de _MongoDB_ o _MySQL_. Cuando ejecutemos la
+- `DB_URL`: El _string_ de conexión de _MongoDB_ o _MySQL_. Cuando ejecutemos la
   aplicación en nuestra computadora (en entorno de desarrollo), podemos usar el
   una base de datos local, pero en producción deberemos utilizar las instancias
   configuradas con `docker-compose` (mas sobre esto en la siguiente sección de
   **Deployment**)
-* `JWT_SECRET`: Nuestra aplicación implementa autenticación usando JWT (JSON
+- `JWT_SECRET`: Nuestra aplicación implementa autenticación usando JWT (JSON
   Web Tokens). Para poder firmar (cifrar) y verificar (descifrar) los tokens,
   nuestra aplicación necesita un secreto. En local puedes usar el valor por
   defecto (`xxxxxxxx`), pero es muy importante que uses un _secreto_ de verdad
   en producción.
-* `ADMIN_EMAIL`: Opcionalmente podemos especificar un email y password para
+- `ADMIN_EMAIL`: Opcionalmente podemos especificar un email y password para
   el usuario admin (root). Si estos detalles están presentes la aplicación se
   asegurará que exista el usuario y que tenga permisos de administrador. Valor
   por defecto `admin@localhost`.
-* `ADMIN_PASSWORD`: Si hemos especificado un `ADMIN_EMAIL`, debemos pasar
+- `ADMIN_PASSWORD`: Si hemos especificado un `ADMIN_EMAIL`, debemos pasar
   también una contraseña para el usuario admin. Valor por defecto: `changeme`.
 
 ### 5.3 Despliegue (Deployment)
@@ -386,11 +388,11 @@ seleccionada. Por otro lado, con respecto al despliegue, no es obligatorio usar
 con el mecanismo de despligue y estrategia de alojamiento. Te recomendamos
 explorar las siguientes opciones:
 
-* [Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) es
+- [Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) es
   probablemente la opción más _sencilla_ (la que requiere menos configuración) y
   nos permite alojar tanto el servidor web como la base de datos (PostgreSQL) en
   el mismo sitio con pocos clicks.
-* Si quieres explorar opciones más personalizadas y ver docker del lado del
+- Si quieres explorar opciones más personalizadas y ver docker del lado del
   servidor puedes cosiderar proveedores como
   [AWS (Amazon Web Services)](https://aws.amazon.com/) o
   [GCP (Google Cloud Platform)](https://cloud.google.com/), ambos tienen algún
@@ -398,7 +400,7 @@ explorar las siguientes opciones:
   (VPS) donde configurar nuestro propio Docker o servicios para desplegar
   aplicaciones en contenedores (por ejemplo [Compute Engine](https://cloud.google.com/compute/docs/containers)
   de GCP o [Elastic Container Service](https://aws.amazon.com/ecs/) de AWS).
-* Si quieres trabajar con MongoDB, [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Si quieres trabajar con MongoDB, [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
   es una muy buena opción para alojar nuestra base datos de producción, la cuál
   podemos usar en conjunción con cualquiera de las opciones mencionadas arriba.
 
@@ -409,23 +411,23 @@ dudes en consultar con tus pares y tus coaches.
 
 ### Primeros pasos
 
-> :information_source: Antes de comenzar a programar te recomendamos leer y
-> seguir con detenimiento la [**guía de _primeros pasos_**](./GETTING-STARTED.md)
+> :information*source: Antes de comenzar a programar te recomendamos leer y
+> seguir con detenimiento la [\*\*guía de \_primeros pasos*\*\*](./GETTING-STARTED.md)
 > para ayudarte a elegir tu stack (base de datos, módulo para conectar a la base
 > de datos desde Node.js, etc) y configurar tu entorno de desarrollo.
 
 ### Otros recursos
 
-* [Express](https://expressjs.com/)
-* [MongoDB](https://www.mongodb.com/)
-* [PostgreSQL](https://www.postgresql.org/)
-* [MySQL](https://www.mysql.com/)
-* [docker](https://docs.docker.com/)
-* [docker compose](https://docs.docker.com/compose/)
-* [¿Qué es Docker? | Curso de Docker | Platzi Cursos](https://youtu.be/hQgvt-s-AHQ)
-* [Postman](https://www.getpostman.com)
-* [Variable de entorno - Wikipedia](https://es.wikipedia.org/wiki/Variable_de_entorno)
-* [`process.env` - Node.js docs](https://nodejs.org/api/process.html#process_process_env)
+- [Express](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [MySQL](https://www.mysql.com/)
+- [docker](https://docs.docker.com/)
+- [docker compose](https://docs.docker.com/compose/)
+- [¿Qué es Docker? | Curso de Docker | Platzi Cursos](https://youtu.be/hQgvt-s-AHQ)
+- [Postman](https://www.getpostman.com)
+- [Variable de entorno - Wikipedia](https://es.wikipedia.org/wiki/Variable_de_entorno)
+- [`process.env` - Node.js docs](https://nodejs.org/api/process.html#process_process_env)
 
 ---
 
@@ -433,32 +435,32 @@ dudes en consultar con tus pares y tus coaches.
 
 ### 7.1 `/`
 
-* [ ] `GET /`
+- [ ] `GET /`
 
 ### 7.2 `/auth`
 
-* [ ] `POST /auth`
+- [ ] `POST /auth`
 
 ### 7.3 `/users`
 
-* [ ] `GET /users`
-* [ ] `GET /users/:uid`
-* [ ] `POST /users`
-* [ ] `PUT /users/:uid`
-* [ ] `DELETE /users/:uid`
+- [ ] `GET /users`
+- [ ] `GET /users/:uid`
+- [ ] `POST /users`
+- [ ] `PUT /users/:uid`
+- [ ] `DELETE /users/:uid`
 
 ### 7.4 `/products`
 
-* [ ] `GET /products`
-* [ ] `GET /products/:productid`
-* [ ] `POST /products`
-* [ ] `PUT /products/:productid`
-* [ ] `DELETE /products/:productid`
+- [ ] `GET /products`
+- [ ] `GET /products/:productid`
+- [ ] `POST /products`
+- [ ] `PUT /products/:productid`
+- [ ] `DELETE /products/:productid`
 
 ### 7.5 `/orders`
 
-* [ ] `GET /orders`
-* [ ] `GET /orders/:orderId`
-* [ ] `POST /orders`
-* [ ] `PUT /orders/:orderId`
-* [ ] `DELETE /orders/:orderId`
+- [ ] `GET /orders`
+- [ ] `GET /orders/:orderId`
+- [ ] `POST /orders`
+- [ ] `PUT /orders/:orderId`
+- [ ] `DELETE /orders/:orderId`
