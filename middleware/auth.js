@@ -1,52 +1,75 @@
 const jwt = require('jsonwebtoken');
 
-module.exports = (secret) => (req, resp, next) => {
+const User = require('../models/User');
+
+module.exports = (secret) => (req, res, next) => {
   const { authorization } = req.headers;
 
-  if (!authorization) {
-    return next();
-  }
+  if (!authorization) return next();
 
   const [type, token] = authorization.split(' ');
 
-  if (type.toLowerCase() !== 'bearer') {
-    return next();
-  }
+  if (type.toLowerCase() !== 'bearer') return next();
 
-  jwt.verify(token, secret, (err, decodedToken) => {
-    if (err) {
-      return next(403);
-    }
+  jwt.verify(token, secret, async (err, decodedToken) => {
+    if (err) return next(403);
 
-    // TODO: Verificar identidad del usuario usando `decodeToken.uid`
+    const userInfo = await User.findById(decodedToken.uid, { email: 1, roles: 1 }).populate('roles');
+
+    if (!userInfo) return next(404);
+
+    req.userInfo = userInfo;
+
+    next();
   });
 };
 
+module.exports.isAuthenticated = (req) => !!req.userInfo && !!req.userInfo._id;
 
-module.exports.isAuthenticated = (req) => (
-  // TODO: decidir por la informacion del request si la usuaria esta autenticada
-  false
-);
+module.exports.isAdmin = (req) => !!req.userInfo.roles.find(({ name }) => name === 'admin');
 
+module.exports.isChef = (req) => !!req.userInfo.roles.find(({ name }) => name === 'chef');
 
-module.exports.isAdmin = (req) => (
-  // TODO: decidir por la informacion del request si la usuaria es admin
-  false
-);
+module.exports.isWaiter = (req) => !!req.userInfo.roles.find(({ name }) => name === 'waiter');
 
+module.exports.requireAuth = (req, res, next) => (!module.exports.isAuthenticated(req) ? next({ statusCode: 401, message: 'Need authentication' }) : next());
 
-module.exports.requireAuth = (req, resp, next) => (
-  (!module.exports.isAuthenticated(req))
-    ? next(401)
-    : next()
-);
+module.exports.requireAdmin = (req, res, next) => {
+  const { isAuthenticated, isAdmin } = module.exports;
 
+  if (!isAuthenticated(req)) return next({ statusCode: 401, message: 'Need authentication' });
 
-module.exports.requireAdmin = (req, resp, next) => (
-  // eslint-disable-next-line no-nested-ternary
-  (!module.exports.isAuthenticated(req))
-    ? next(401)
-    : (!module.exports.isAdmin(req))
-      ? next(403)
-      : next()
-);
+  if (!isAdmin(req)) return next({ statusCode: 403, message: 'Need admin' });
+
+  next();
+};
+
+module.exports.requireWaiter = (req, res, next) => {
+  const { isAuthenticated, isWaiter } = module.exports;
+
+  if (!isAuthenticated(req)) return next({ statusCode: 401, message: 'Need authentication' });
+
+  if (!isWaiter(req)) return next({ statusCode: 403, message: 'Need waiter' });
+
+  next();
+};
+
+module.exports.requireChefOrWaiter = (req, res, next) => {
+  const { isAuthenticated, isChef, isWaiter } = module.exports;
+
+  if (!isAuthenticated(req)) return next({ statusCode: 401, message: 'Need authentication' });
+
+  if (isChef(req) || isWaiter(req)) return next();
+
+  return next({ statusCode: 403, message: 'Need waiter or chef' });
+};
+
+module.exports.requireAdminOrChef = (req, res, next) => {
+  const { isAuthenticated, isAdmin, isChef } = module.exports;
+
+  if (!isAuthenticated(req)) return next({ statusCode: 401, message: 'Need authentication' });
+
+  if (isAdmin(req) || isChef(req)) return next();
+
+  next({ statusCode: 403, message: 'Need admin or chef' });
+};
