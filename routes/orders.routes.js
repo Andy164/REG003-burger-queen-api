@@ -1,6 +1,9 @@
-const {
-  requireAuth,
-} = require('../middleware/auth');
+const { body } = require('express-validator');
+
+const { requireAuth, requireWaiter, requireChefOrWaiter } = require('../middleware/auth');
+const { validate } = require('../middleware/validator');
+
+const { createOrder, getOrders, getOrderById, updateOrderById, deleteOrderById } = require('../controller/orders.controller');
 
 /** @module orders */
 module.exports = (app, nextMain) => {
@@ -30,8 +33,7 @@ module.exports = (app, nextMain) => {
    * @code {200} si la autenticación es correcta
    * @code {401} si no hay cabecera de autenticación
    */
-  app.get('/orders', requireAuth, (req, resp, next) => {
-  });
+  app.get('/orders', requireAuth, getOrders);
 
   /**
    * @name GET /orders/:orderId
@@ -54,8 +56,7 @@ module.exports = (app, nextMain) => {
    * @code {401} si no hay cabecera de autenticación
    * @code {404} si la orden con `orderId` indicado no existe
    */
-  app.get('/orders/:orderId', requireAuth, (req, resp, next) => {
-  });
+  app.get('/orders/:orderId', requireAuth, getOrderById);
 
   /**
    * @name POST /orders
@@ -83,8 +84,18 @@ module.exports = (app, nextMain) => {
    * @code {400} no se indica `userId` o se intenta crear una orden sin productos
    * @code {401} si no hay cabecera de autenticación
    */
-  app.post('/orders', requireAuth, (req, resp, next) => {
-  });
+  app.post(
+    '/orders',
+    requireWaiter,
+    validate([
+      body('userId').exists().notEmpty().isString(),
+      body('client').exists().notEmpty().isString(),
+      body('products').exists().notEmpty().isArray(),
+      body('status').exists().notEmpty().isString(),
+      body('dateProcessed').optional({ nullable: true }).isDate(),
+    ]),
+    createOrder
+  );
 
   /**
    * @name PUT /orders
@@ -114,8 +125,18 @@ module.exports = (app, nextMain) => {
    * @code {401} si no hay cabecera de autenticación
    * @code {404} si la orderId con `orderId` indicado no existe
    */
-  app.put('/orders/:orderId', requireAuth, (req, resp, next) => {
-  });
+  app.put(
+    '/orders/:orderId',
+    requireChefOrWaiter,
+    validate([
+      body('userId').optional({ nullable: false }).isString(),
+      body('client').optional({ nullable: false }).isString(),
+      body('products').optional({ nullable: false }).isArray(),
+      body('status').optional({ nullable: false }).isIn(['pending', 'preparing', 'delivering', 'delivered', 'canceled']).isString(),
+      body('dateProcessed').optional({ nullable: false }).isDate(),
+    ]),
+    updateOrderById
+  );
 
   /**
    * @name DELETE /orders
@@ -138,8 +159,7 @@ module.exports = (app, nextMain) => {
    * @code {401} si no hay cabecera de autenticación
    * @code {404} si el producto con `orderId` indicado no existe
    */
-  app.delete('/orders/:orderId', requireAuth, (req, resp, next) => {
-  });
+  app.delete('/orders/:orderId', requireWaiter, deleteOrderById);
 
   nextMain();
 };
