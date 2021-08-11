@@ -1,7 +1,5 @@
 # Burger Queen - API con Node.js
 
-https://github.com/FaztWeb/company-products-api/blob/master/src/controllers/auth.controller.js
-
 ## Índice
 
 - [1. Preámbulo](#1-pre%C3%A1mbulo)
