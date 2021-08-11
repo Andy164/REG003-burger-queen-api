@@ -12,11 +12,21 @@ const { fetch, fetchAsTestUser, fetchAsAdmin, fetchWithAuth } = process;
 //   }, {});
 
 describe.skip('GET /users', () => {
-  it('should fail with 401 when no auth', () => fetch('/users').then((resp) => expect(resp.status).toBe(401)));
+  it('should fail with 401 when no auth', (done) => {
+    fetch('/users').then((resp) => {
+      expect(resp.status).toBe(401);
+      done();
+    });
+  });
 
-  it('should fail with 403 when not admin', () => fetchAsTestUser('/users').then((resp) => expect(resp.status).toBe(403)));
+  it('should fail with 403 when not admin', (done) => {
+    fetchAsTestUser('/users').then((resp) => {
+      expect(resp.status).toBe(403);
+      done();
+    });
+  });
 
-  it('should get users', () =>
+  it('should get users', (done) => {
     fetchAsAdmin('/users')
       .then((resp) => {
         expect(resp.status).toBe(200);
@@ -25,8 +35,10 @@ describe.skip('GET /users', () => {
       .then((json) => {
         expect(Array.isArray(json)).toBe(true);
         expect(json.length > 0).toBe(true);
+        done();
         // TODO: Check that the results are actually the "expected" user objects
-      }));
+      });
+  });
 
   // TODO Revisar paginado
   /* it('should get users with pagination', () =>

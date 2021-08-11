@@ -19,7 +19,7 @@ module.exports.signIn = async (req, res, next) => {
 
     if (!isCorrectPassword) return next(401);
 
-    const token = jwt.sign({ uid: user._id }, secret);
+    const token = jwt.sign({ uid: user._id }, secret, { expiresIn: 86400 });
 
     res.status(201).json({ token });
   } catch (error) {
