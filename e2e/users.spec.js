@@ -11,7 +11,7 @@ const { fetch, fetchAsTestUser, fetchAsAdmin, fetchWithAuth } = process;
 //     return { ...memo, [key]: value };
 //   }, {});
 
-describe.skip('GET /users', () => {
+describe('GET /users', () => {
   it('should fail with 401 when no auth', (done) => {
     fetch('/users').then((resp) => {
       expect(resp.status).toBe(401);
@@ -98,7 +98,7 @@ describe.skip('GET /users', () => {
       })); */
 });
 
-describe.skip('GET /users/:uid', () => {
+describe('GET /users/:uid', () => {
   it('should fail with 401 when no auth', (done) => {
     fetch('/users/foo@bar.baz').then((resp) => {
       expect(resp.status).toBe(401);
@@ -145,7 +145,7 @@ describe.skip('GET /users/:uid', () => {
   });
 });
 
-describe.skip('POST /users', () => {
+describe('POST /users', () => {
   it('should respond with 400 when email and password missing', (done) => {
     fetchAsAdmin('/users', { method: 'POST' }).then((resp) => {
       expect(resp.status).toBe(400);
@@ -249,7 +249,7 @@ describe.skip('POST /users', () => {
   });
 });
 
-describe.skip('PUT /users/:uid', () => {
+describe('PUT /users/:uid', () => {
   it('should fail with 401 when no auth', (done) => {
     fetch('/users/foo@bar.baz', { method: 'PUT' }).then((resp) => {
       expect(resp.status).toBe(401);
@@ -338,7 +338,7 @@ describe.skip('PUT /users/:uid', () => {
   });
 });
 
-describe.skip('DELETE /users/:uid', () => {
+describe('DELETE /users/:uid', () => {
   it('should fail with 401 when no auth', (done) => {
     fetch('/users/foo@bar.baz', { method: 'DELETE' }).then((resp) => {
       expect(resp.status).toBe(401);

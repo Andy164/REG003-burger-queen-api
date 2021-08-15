@@ -1,6 +1,6 @@
 const { fetch, fetchAsTestUser, fetchAsAdmin } = process;
 
-describe.skip('POST /products', () => {
+describe('POST /products', () => {
   it('should fail with 401 when no auth', (done) => {
     fetch('/products', { method: 'POST' }).then((resp) => {
       expect(resp.status).toBe(401);
@@ -46,7 +46,7 @@ describe.skip('POST /products', () => {
   });
 });
 
-describe.skip('GET /products', () => {
+describe('GET /products', () => {
   it('should get products with Auth', (done) => {
     fetchAsTestUser('/products')
       .then((resp) => {
@@ -65,7 +65,7 @@ describe.skip('GET /products', () => {
   });
 });
 
-describe.skip('GET /products/:productid', () => {
+describe('GET /products/:productid', () => {
   it('should get product with Auth', (done) => {
     fetchAsTestUser('/products')
       .then((resp) => {
@@ -100,7 +100,7 @@ describe.skip('GET /products/:productid', () => {
   });
 });
 
-describe.skip('PUT /products/:productid', () => {
+describe('PUT /products/:productid', () => {
   it('should fail with 401 when no auth', (done) => {
     fetch('/products/6111d3105ae7c60e1059b26d', { method: 'PUT' }).then((resp) => {
       expect(resp.status).toBe(401);
@@ -204,7 +204,7 @@ describe.skip('PUT /products/:productid', () => {
   });
 });
 
-describe.skip('DELETE /products/:productid', () => {
+describe('DELETE /products/:productid', () => {
   it('should fail with 401 when no auth', (done) => {
     fetch('/products/6111d3105ae7c60e1059b26d', { method: 'DELETE' }).then((resp) => {
       expect(resp.status).toBe(401);
