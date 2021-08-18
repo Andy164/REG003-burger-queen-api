@@ -91,7 +91,3 @@ describe.skip('getUsers', () => {
     expect(res.json).toHaveBeenCalledTimes(1);
   });
 });
-
-// https://docs.google.com/forms/d/e/1FAIpQLSdxQc15m3jTbAJF_A_OiwASiiX34V6080C9bB8HmqFz6__7Fw/viewform?usp=pp_url&entry.175225000=Tania+Hern%C3%A1ndez
-
-// Tannia Lucía Hernández Rojas
