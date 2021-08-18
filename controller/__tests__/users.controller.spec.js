@@ -38,7 +38,7 @@ afterAll(async () => {
   await closeDatabase();
 });
 
-describe.skip('Create a User', () => {
+describe('Create a User', () => {
   it('should not create a user if record already exists', async () => {
     const req = mockRequest({
       username: 'admin',
@@ -95,7 +95,7 @@ describe.skip('Create a User', () => {
   });
 });
 
-describe.skip('Get Users', () => {
+describe('Get Users', () => {
   it('should get all users', async () => {
     const req = mockRequest(
       {},
@@ -116,7 +116,7 @@ describe.skip('Get Users', () => {
   });
 });
 
-describe.skip('Get Users By Id', () => {
+describe('Get Users By Id', () => {
   it('should fail when no admin', async () => {
     const req = mockRequest(
       {},
@@ -162,7 +162,7 @@ describe.skip('Get Users By Id', () => {
   });
 });
 
-describe.skip('Update user', () => {
+describe('Update user', () => {
   it('should fail when no admin or the user', async () => {
     const req = mockRequest(
       {},
@@ -256,7 +256,7 @@ describe.skip('Update user', () => {
   });
 });
 
-describe.skip('Delete a user', () => {
+describe('Delete a user', () => {
   it('should fail when no admin or the user', async () => {
     const req = mockRequest(
       {},

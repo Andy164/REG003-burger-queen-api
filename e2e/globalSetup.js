@@ -4,6 +4,7 @@ const nodeFetch = require('node-fetch');
 const kill = require('tree-kill');
 
 // const mongoSetup = require('@shelf/jest-mongodb/setup');
+// const { connect } = require('../testSetup/db-config');
 
 const config = require('../config');
 
@@ -129,7 +130,7 @@ module.exports = () =>
     }
 
     // Configurar DB de tests --------------------------------------------------------------
-    // mongoSetup().then(() => {
+    // connect.then(() => {
     console.info('Staring local server...');
     // Which is checking the operating system if ti's windows it runs npm.cmd if it's linux just npm
     const child = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start', process.env.PORT || 8888, 'test'], {

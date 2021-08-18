@@ -35,7 +35,7 @@ afterAll(async () => {
   await closeDatabase();
 });
 
-describe.skip('getUsers', () => {
+describe('getUsers', () => {
   it('should fail when bad request', async () => {
     const res = mockResponse();
     const next = mockNext;

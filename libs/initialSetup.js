@@ -33,7 +33,6 @@ module.exports.initAdminUser = async (app) => {
       await User.create(adminUser);
     }
   } catch (error) {
-    // console.log(error);
     return error;
   }
 };

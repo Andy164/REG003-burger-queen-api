@@ -59,8 +59,8 @@ describe('GET /products', () => {
           expect(typeof product._id).toBe('string');
           expect(typeof product.name).toBe('string');
           expect(typeof product.price).toBe('number');
-          done();
         });
+        done();
       });
   });
 });
