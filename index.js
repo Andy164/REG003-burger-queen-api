@@ -1,10 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const morgan = require('morgan');
 
 const authMiddleware = require('./middleware/auth');
 const errorHandler = require('./middleware/error');
 
-const connectDB = require('./libs/database');
+const connectDB = require('./libs/db-config');
 const { initRoles, initAdminUser } = require('./libs/initialSetup');
 
 const config = require('./config');
@@ -15,14 +16,13 @@ connectDB();
 
 const app = express();
 
-// TODO CORS
-
 // Express variables
 app.set('config', config);
 app.set('pkg', pkg);
 
 // MIDDLEWARES
 app.use(morgan('dev'));
+app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
 // Understand the JSON format that the server receives

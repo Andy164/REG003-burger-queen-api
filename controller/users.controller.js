@@ -21,6 +21,8 @@ module.exports.createUser = async (req, res, next) => {
 
     const rolesInRole = await Role.find({ name: { $in: roles } });
 
+    if (!rolesInRole.length) return next(400);
+
     newUser.roles = rolesInRole.map((role) => role._id);
 
     const {

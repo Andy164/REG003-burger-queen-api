@@ -3,9 +3,12 @@ const Order = require('../models/Order');
 
 module.exports.createOrder = async (req, res, next) => {
   try {
+    if (!Object.keys(req.body).length) return next(400);
+
     const { userId, client, products, status, dateProcessed } = req.body;
 
     const newOrder = new Order({ userId, client, products, status, dateProcessed });
+
     const orderSaved = await newOrder.save().then((model) => model.populate('userId', 'name').populate('products.product').execPopulate());
 
     res.status(201).json(orderSaved._doc);

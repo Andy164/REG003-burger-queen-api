@@ -14,10 +14,6 @@ const orderSchema = new Schema(
       required: true,
       trim: true,
     },
-    // products: {
-    //   type: Array,
-    //   required: true,
-    // },
     products: [
       {
         product: {

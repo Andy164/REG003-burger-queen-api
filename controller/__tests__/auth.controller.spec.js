@@ -1,18 +1,17 @@
-const { signIn } = require('../auth.controller');
-
 const config = require('../../config');
 
-const { initRoles, initAdminUser } = require('../../libs/initialSetup');
-const { connect, closeDatabase } = require('../../testSetup/db-config');
+const { signIn } = require('../auth.controller');
 
-const mockRequest = (body) => ({
-  body,
-});
+const { initRoles, initAdminUser } = require('../../libs/initialSetup');
+const { connect, closeDatabase } = require('../../libs/db-config');
+
+const mockRequest = {};
 
 const mockResponse = () => {
   const res = {};
   res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockImplementation((info) => info);
+
   return res;
 };
 
@@ -38,56 +37,55 @@ afterAll(async () => {
 describe('getUsers', () => {
   it('should fail when bad request', async () => {
     const res = mockResponse();
-    const next = mockNext;
 
-    await signIn('', res, next);
+    await signIn('', res, mockNext);
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledTimes(1);
   });
 
   it('should not login a user if the user does not exist', async () => {
-    const req = mockRequest({
+    mockRequest.body = {
       email: 'user@example.co',
       password: 'password',
-    });
+    };
 
     const res = mockResponse();
-    const next = mockNext;
 
-    await signIn(req, res, next);
+    await signIn(mockRequest, res, mockNext);
 
-    expect(next).toHaveBeenCalled();
-    expect(next).toHaveBeenCalledWith({ statusCode: 404, message: 'Wrong email or password' });
+    expect(mockNext).toHaveBeenCalled();
+    expect(mockNext).toHaveBeenCalledWith({ statusCode: 404, message: 'Wrong email or password' });
   });
 
   it('should not login a user if password does not match with hash', async () => {
-    const req = mockRequest({
+    mockRequest.body = {
       email: config.adminEmail,
       password: 'password',
-    });
+    };
 
     const res = mockResponse();
-    const next = mockNext;
 
-    await signIn(req, res, next);
+    await signIn(mockRequest, res, mockNext);
 
-    expect(next).toHaveBeenCalled();
-    expect(next).toHaveBeenCalledWith(401);
+    expect(mockNext).toHaveBeenCalled();
+    expect(mockNext).toHaveBeenCalledWith(401);
   });
 
   it('should login a user successfully', async () => {
-    const req = mockRequest({
+    mockRequest.body = {
       email: config.adminEmail,
       password: config.adminPassword,
-    });
+    };
 
     const res = mockResponse();
-    const next = mockNext;
 
-    await signIn(req, res, next);
+    await signIn(mockRequest, res, mockNext);
+
+    const { value } = res.json.mock.results[0];
 
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledTimes(1);
+    expect(value).toHaveProperty('token');
   });
 });

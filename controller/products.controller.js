@@ -3,6 +3,8 @@ const Product = require('../models/Product');
 
 module.exports.createProduct = async (req, res, next) => {
   try {
+    if (!Object.keys(req.body).length) return next(400);
+
     const { name, price, image, category, type } = req.body;
 
     const productByName = await Product.findOne({ name });

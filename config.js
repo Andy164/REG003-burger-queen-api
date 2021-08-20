@@ -2,11 +2,7 @@ require('dotenv').config();
 
 exports.port = process.argv[2] || process.env.PORT;
 
-exports.dbURL = process.argv[3] ? process.env.DB_URL_TEST : process.env.DB_URL;
-
-exports.dbURLTest = process.env.DB_URL_TEST;
-
-exports.nodeEnv = process.env.NODE_ENV;
+exports.dbURL = process.env.MONGO_URL || process.env.DB_URL;
 
 exports.secret = process.env.JWT_SECRET;
 

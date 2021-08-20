@@ -2,16 +2,20 @@ const mongoose = require('mongoose');
 
 const { dbURL } = require('../config');
 
-module.exports = async () => {
+module.exports.connect = async () => {
   try {
     await mongoose.connect(dbURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: true,
+      useFindAndModify: false,
       useCreateIndex: true,
     });
-    // console.log('db is connected');
   } catch (error) {
     console.error('error al conectar: ', error);
   }
+};
+
+module.exports.closeDatabase = async () => {
+  await mongoose.connection.dropDatabase();
+  await mongoose.connection.close();
 };

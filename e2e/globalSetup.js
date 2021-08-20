@@ -3,8 +3,7 @@ const { spawn } = require('child_process');
 const nodeFetch = require('node-fetch');
 const kill = require('tree-kill');
 
-// const mongoSetup = require('@shelf/jest-mongodb/setup');
-// const { connect } = require('../testSetup/db-config');
+const mongoSetup = require('@shelf/jest-mongodb/setup');
 
 const config = require('../config');
 
@@ -129,44 +128,43 @@ module.exports = () =>
       return resolve();
     }
 
-    // Configurar DB de tests --------------------------------------------------------------
-    // connect.then(() => {
-    console.info('Staring local server...');
-    // Which is checking the operating system if ti's windows it runs npm.cmd if it's linux just npm
-    const child = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start', process.env.PORT || 8888, 'test'], {
-      cwd: path.resolve(__dirname, '../'),
-      stdio: ['ignore', 'pipe', 'pipe'],
-    });
-
-    Object.assign(__e2e, { childProcessPid: child.pid });
-
-    child.stdout.on('data', (chunk) => {
-      console.info(`\x1b[34m${chunk.toString()}\x1b[0m`);
-    });
-
-    child.stderr.on('data', (chunk) => {
-      const str = chunk.toString();
-      if (/DeprecationWarning/.test(str)) {
-        return;
-      }
-      console.error('child::stderr', str);
-    });
-
-    process.on('uncaughtException', (err) => {
-      console.error('UncaughtException!');
-      console.error(err);
-      kill(child.pid, 'SIGKILL', () => process.exit(1));
-    });
-
-    waitForServerToBeReady()
-      .then(checkAdminCredentials)
-      .then(createTestUser)
-      .then(checkTestUserCredentials)
-      .then(resolve)
-      .catch((err) => {
-        kill(child.pid, 'SIGKILL', () => reject(err));
+    mongoSetup().then(() => {
+      console.info('Staring local server...');
+      // Which is checking the operating system if ti's windows it runs npm.cmd if it's linux just npm
+      const child = spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', ['start', process.env.PORT || 8888], {
+        cwd: path.resolve(__dirname, '../'),
+        stdio: ['ignore', 'pipe', 'pipe'],
       });
-    // });
+
+      Object.assign(__e2e, { childProcessPid: child.pid });
+
+      child.stdout.on('data', (chunk) => {
+        console.info(`\x1b[34m${chunk.toString()}\x1b[0m`);
+      });
+
+      child.stderr.on('data', (chunk) => {
+        const str = chunk.toString();
+        if (/DeprecationWarning/.test(str)) {
+          return;
+        }
+        console.error('child::stderr', str);
+      });
+
+      process.on('uncaughtException', (err) => {
+        console.error('UncaughtException!');
+        console.error(err);
+        kill(child.pid, 'SIGKILL', () => process.exit(1));
+      });
+
+      waitForServerToBeReady()
+        .then(checkAdminCredentials)
+        .then(createTestUser)
+        .then(checkTestUserCredentials)
+        .then(resolve)
+        .catch((err) => {
+          kill(child.pid, 'SIGKILL', () => reject(err));
+        });
+    });
   });
 
 // Export globals - ugly... :-(
