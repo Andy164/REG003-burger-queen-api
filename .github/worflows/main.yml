@@ -1,0 +1,32 @@
+name: Deploy in Heroku
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: 'bq-api-648' #Must be unique in Heroku
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          usedocker: true
+          docker_build_args: |
+            NODE_ENV
+            PORT
+            DB_URL
+            JWT_SECRET
+            ADMIN_EMAIL
+            ADMIN_PASSWORD
+        env:
+          NODE_ENV: production
+          PORT: 8080
+          DB_URL: ${{ secrets.DB_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          ADMIN_EMAIL: 'admin@localhost.co'
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
