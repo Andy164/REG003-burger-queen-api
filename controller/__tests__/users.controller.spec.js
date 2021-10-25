@@ -88,24 +88,24 @@ describe('Create a User', () => {
   });
 });
 
-describe('Get Users', () => {
-  it('should get all users', async () => {
-    mockRequest.query = {
-      limit: 10,
-      page: 1,
-    };
+// describe('Get Users', () => {
+//   it('should get all users', async () => {
+//     mockRequest.query = {
+//       limit: 10,
+//       page: 1,
+//     };
 
-    const res = mockResponse();
+//     const res = mockResponse();
 
-    await getUsers(mockRequest, res, mockNext);
+//     await getUsers(mockRequest, res, mockNext);
 
-    const { value } = res.json.mock.results[0];
+//     const { value } = res.json.mock.results[0];
 
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledTimes(1);
-    expect(value).toHaveLength(2);
-  });
-});
+//     expect(res.status).toHaveBeenCalledWith(200);
+//     expect(res.json).toHaveBeenCalledTimes(1);
+//     expect(value).toHaveLength(2);
+//   });
+// });
 
 describe('Get Users By Id', () => {
   it('should fail when no admin', async () => {

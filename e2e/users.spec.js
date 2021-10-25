@@ -1,15 +1,14 @@
-// const url = require('url');
-// const qs = require('querystring');
+const url = require('url');
+const qs = require('querystring');
 const config = require('../config');
 
 const { fetch, fetchAsTestUser, fetchAsAdmin, fetchWithAuth } = process;
 
-// TODO pagination
-// const parseLinkHeader = (str) =>
-//   str.split(',').reduce((memo, item) => {
-//     const [, value, key] = /^<(.*)>;\s+rel="(first|last|prev|next)"/.exec(item.trim());
-//     return { ...memo, [key]: value };
-//   }, {});
+const parseLinkHeader = (str) =>
+  str.split(',').reduce((memo, item) => {
+    const [, value, key] = /^<(.*)>;\s+rel="(first|last|prev|next)"/.exec(item.trim());
+    return { ...memo, [key]: value };
+  }, {});
 
 describe('GET /users', () => {
   it('should fail with 401 when no auth', (done) => {
@@ -36,12 +35,10 @@ describe('GET /users', () => {
         expect(Array.isArray(json)).toBe(true);
         expect(json.length > 0).toBe(true);
         done();
-        // TODO: Check that the results are actually the "expected" user objects
       });
   });
 
-  // TODO Revisar paginado
-  /* it('should get users with pagination', () =>
+  it('should get users with pagination', () =>
     fetchAsAdmin('/users?limit=1')
       .then((resp) => {
         expect(resp.status).toBe(200);
@@ -49,13 +46,6 @@ describe('GET /users', () => {
       })
       .then(({ headers, json }) => {
         const linkHeader = parseLinkHeader(headers.get('link'));
-
-        // eslint-disable-next-line no-console
-        console.log('headers: ', headers);
-        // eslint-disable-next-line no-console
-        console.log(headers.get('link'));
-        // eslint-disable-next-line no-console
-        console.log(linkHeader);
 
         const nextUrlObj = url.parse(linkHeader.next);
         const lastUrlObj = url.parse(linkHeader.last);
@@ -95,7 +85,7 @@ describe('GET /users', () => {
         expect(json.length).toBe(1);
         expect(json[0]).toHaveProperty('_id');
         expect(json[0]).toHaveProperty('email');
-      })); */
+      }));
 });
 
 describe('GET /users/:uid', () => {
@@ -206,7 +196,6 @@ describe('POST /users', () => {
       });
   });
 
-  // TODO El admin se crea aparte
   it.skip('should create new admin user', (done) => {
     fetchAsAdmin('/users', {
       method: 'POST',

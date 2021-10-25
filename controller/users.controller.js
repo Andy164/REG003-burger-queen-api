@@ -4,10 +4,6 @@ const Role = require('../models/Role');
 
 module.exports.createUser = async (req, res, next) => {
   try {
-    // TODO Verificar si los roles existen
-    // TODO Verificar formato de email y password
-    // TODO Revisar sobre url
-
     const { username, name, email, password, roles } = req.body;
 
     const userByEmail = await User.findOne({ email });
@@ -38,16 +34,28 @@ module.exports.createUser = async (req, res, next) => {
 module.exports.getUsers = async (req, res, next) => {
   try {
     const { limit = 10, page = 1 } = req.query;
-
-    const currentPage = Math.max(1, +page);
+    const url = `${req.protocol}://${req.get('host')}${req.path}`;
 
     const users = await User.find()
       .limit(+limit)
-      .skip(+limit * (currentPage - 1));
+      .skip(+limit * (page - 1));
+    
+    const totalUsers = await User.countDocuments({});
+    const totalPages = Math.ceil(totalUsers / limit);
+
+    const prevPage = Math.max(1, +page - 1);
+    const nextPage = Math.min(totalPages, +page + 1);
 
     const status = users.length ? 200 : 204;
 
-    res.status(status).json(users);
+    res.status(status)
+      .links({
+        first: `${url}?limit=${limit}&page=1`,
+        last: `${url}?limit=${limit}&page=${totalPages}`,
+        prev: `${url}?limit=${limit}&page=${prevPage}`,
+        next: `${url}?limit=${limit}&page=${nextPage}`,
+      })
+      .json(users);
   } catch (error) {
     next(500);
   }
@@ -80,8 +88,6 @@ module.exports.getUserById = async (req, res, next) => {
 
 module.exports.updateUserById = async (req, res, next) => {
   try {
-    // TODO Probar des userInfo
-
     const {
       userInfo,
       body,

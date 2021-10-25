@@ -5,14 +5,14 @@ const morgan = require('morgan');
 const authMiddleware = require('./middleware/auth');
 const errorHandler = require('./middleware/error');
 
-const connectDB = require('./libs/db-config');
+const { connect } = require('./libs/db-config');
 const { initRoles, initAdminUser } = require('./libs/initialSetup');
 
 const config = require('./config');
 const routes = require('./routes');
 const pkg = require('./package.json');
 
-connectDB();
+connect();
 
 const app = express();
 

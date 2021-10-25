@@ -14,7 +14,6 @@ module.exports.createProduct = async (req, res, next) => {
     const newProduct = new Product({ name, price, image, category, type });
     const productSaved = await newProduct.save();
 
-    // TODO Read about status and statusCode
     res.status(201).json(productSaved._doc);
   } catch (error) {
     next(500);
@@ -75,5 +74,3 @@ module.exports.deleteProductById = async (req, res, next) => {
     next(500);
   }
 };
-
-// TODO Buscar diferencia entre delete y remove

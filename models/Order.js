@@ -1,8 +1,5 @@
 const { Schema, model } = require('mongoose');
 
-// TODO Fix products field: Product can be a ref
-// TODO Check about relations
-
 const orderSchema = new Schema(
   {
     userId: {
@@ -41,7 +38,6 @@ const orderSchema = new Schema(
   {
     timestamps: true,
     // versionKey: false,
-    // eslint-disable-next-line comma-dangle
   }
 );
 
